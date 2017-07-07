@@ -23,8 +23,8 @@ else
   echo "Maven not detected, mounting local repo at default path: ${DEFAULT_MVN_REPO}";
 fi
 
-mkdir ${HOME}/.m2
-sudo chown -R $USER ${HOME}/.m2
+mkdir -p $MVN_REPO
+sudo chown -R $USER $MVN_REPO
 
 docker_exec run -it --rm --name build-che       \
        -v "$MVN_REPO:/home/user/.m2/repository" \
