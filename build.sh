@@ -31,7 +31,25 @@ docker run -it --rm --name build-che       \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
        codenvy/che-dev                          \
-       whoami && pwd && ls -lh && ls -lh /home/user/.m2/repository
+       whoami
+docker run -it --rm --name build-che       \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+       codenvy/che-dev                          \
+       pwd
+docker run -it --rm --name build-che       \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+       codenvy/che-dev                          \
+       ls -lh
+docker run -it --rm --name build-che       \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+       codenvy/che-dev                          \
+       ls -lh /home/user/.m2/repository
 #       mvn clean install
 echo "ls -l ${HOME}/.m2"
 ls -l ${HOME}/.m2
