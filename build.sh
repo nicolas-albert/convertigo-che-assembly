@@ -25,10 +25,11 @@ fi
 
 mkdir -p $MVN_REPO
 sudo chown -R $USER $MVN_REPO
-docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro --user=$USER            \
+docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
+	   --user=$(id -u) \
        codenvy/che-dev                          \
        mvn clean install
 	   
