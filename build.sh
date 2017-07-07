@@ -25,49 +25,14 @@ fi
 
 mkdir -p $MVN_REPO
 sudo chown -R $USER $MVN_REPO
-docker run -it --rm --name build-che       \
+docker run -it --rm --user 2000:2000            \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
        codenvy/che-dev                          \
-       id
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \
-       pwd
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \
-       ls -lh
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \
-       touch toto
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \
-       ls -lh
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \	   
-	   touch /home/user/.m2/repository/toto
-docker run -it --rm --name build-che       \
-       -v "$MVN_REPO:/home/user/.m2/repository" \
-       -v "$PWD":/home/user/che-build           \
-       -w /home/user/che-build                  \
-       codenvy/che-dev                          \
-       ls -lh /home/user/.m2/repository/toto
+       mvn clean install
 	   
+ls -l ${HOME}/.m2
 # Run dockerfiles build
 ./dockerfiles/cli/build.sh
 ./dockerfiles/init/build.sh
