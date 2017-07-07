@@ -1,6 +1,6 @@
 sudo: required
 language: generic
-group: edge
+group: deprecated-2017Q2
 services:
   - docker
 cache:
