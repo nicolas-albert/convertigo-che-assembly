@@ -23,13 +23,16 @@ else
   echo "Maven not detected, mounting local repo at default path: ${DEFAULT_MVN_REPO}";
 fi
 
+mkdir ${HOME}/.m2
 sudo chown -R $USER ${HOME}/.m2
+
 docker_exec run -it --rm --name build-che       \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
        codenvy/che-dev                          \
        mvn clean install
+echo "ls -l ${HOME}/.m2"
 ls -l ${HOME}/.m2
 # Run dockerfiles build
 ./dockerfiles/cli/build.sh
