@@ -25,8 +25,8 @@ fi
 
 mkdir -p $MVN_REPO
 sudo chown -R $USER $MVN_REPO
-
-docker_exec run -it --rm --name build-che       \
+#docker_exec run -it --rm --name build-che       \
+docker run -it --rm --name build-che       \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
