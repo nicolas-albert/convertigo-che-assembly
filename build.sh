@@ -30,7 +30,7 @@ docker_exec run -it --rm --name build-che       \
        -w /home/user/che-build                  \
        codenvy/che-dev                          \
        mvn clean install
-
+ls -l ${HOME}/.m2
 # Run dockerfiles build
 ./dockerfiles/cli/build.sh
 ./dockerfiles/init/build.sh
