@@ -31,7 +31,8 @@ docker run -it --rm --name build-che       \
        -v "$PWD":/home/user/che-build           \
        -w /home/user/che-build                  \
        codenvy/che-dev                          \
-       mvn clean install
+       whoami && pwd && ls -lh && ls -lh /home/user/.m2/repository
+#       mvn clean install
 echo "ls -l ${HOME}/.m2"
 ls -l ${HOME}/.m2
 # Run dockerfiles build
