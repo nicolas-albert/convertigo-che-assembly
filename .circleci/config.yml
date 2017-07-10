@@ -18,6 +18,6 @@ jobs:
         - .m2/repository
      - setup_remote_docker
      - run: |
-       ./dockerfiles/cli/build.sh
-       ./dockerfiles/init/build.sh
-       ./dockerfiles/server/build.sh
+       dockerfiles/cli/build.sh
+       dockerfiles/init/build.sh
+       dockerfiles/server/build.sh
