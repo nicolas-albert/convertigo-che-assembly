@@ -15,6 +15,7 @@ init "$@"
 
 MVN_REPO=${HOME}/.m2/repository
 
+sudo mkdir -p ${MVN_REPO}
 sudo chown -R $USER ${HOME}/.m2
 echo "ls -la"
 ls -la
@@ -27,6 +28,7 @@ docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
 	   --user=$(id -u) \
        codenvy/che-dev                          \
        id
+echo "ls -la /home/user/"
 docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
@@ -34,6 +36,14 @@ docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
 	   --user=$(id -u) \
        codenvy/che-dev                          \
        ls -la /home/user/
+echo "ls -la /home/user/.m2"
+docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+	   --user=$(id -u) \
+       codenvy/che-dev                          \
+       ls -la /home/user/.m2
 docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
