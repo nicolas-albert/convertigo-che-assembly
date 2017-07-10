@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: codenvy/che-dev:latest
+    working_directory: /home/user/che-build
+    steps:
+     - checkout
+     - run: mvn clean install
