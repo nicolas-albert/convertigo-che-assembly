@@ -13,7 +13,7 @@ set -u
 . ./build.include
 init "$@"
 
-DEFAULT_MVN_REPO=${HOME}/.m2/repository
+MVN_REPO=${HOME}/.m2/repository
 
 sudo chown -R $USER ${HOME}/.m2
 echo "ls -la"
