@@ -2,8 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-      - image: codenvy/che-dev:latest
+     - image: codenvy/che-dev:latest
     working_directory: /home/user/che-build
     steps:
      - checkout
-     - run: mvn clean install
+     - restore_cache:
+       keys:
+        - m2
+     - run:
+       name: Maven build
+       command: mvn clean install 2>&1 | grep -v "Download" -v " KB" && exit ${PIPESTATUS[0]}
+     - save_cache:
+       key: m2
+       paths:
+        - .m2/repository
+     - setup_remote_docker
+     - run: |
+       ./dockerfiles/cli/build.sh
+       ./dockerfiles/init/build.sh
+       ./dockerfiles/server/build.sh
