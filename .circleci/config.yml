@@ -8,12 +8,12 @@ jobs:
      - checkout
      - restore_cache:
          keys:
-           - m2
+           - maven
      - run:
          name: Maven build
          command: mvn clean install 2>&1 | grep -v -e "Download" -e " KB"
      - save_cache:
-         key: m2
+         key: maven
          paths:
            - ~/.m2/repository
      - run:
@@ -25,7 +25,7 @@ jobs:
            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
            sudo mv /tmp/docker/* /usr/bin
      - setup_remote_docker
-     - run: |
+     - run:
          name: Build images
          command: |
            dockerfiles/cli/build.sh
