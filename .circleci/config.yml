@@ -11,7 +11,7 @@ jobs:
            - m2
      - run:
          name: Maven build
-         command: mvn clean install 2>&1 | grep -v "Download" -v " KB" && exit ${PIPESTATUS[0]}
+         command: mvn clean install 2>&1 | grep -v -e "Download" -e " KB"
      - save_cache:
          key: m2
          paths:
