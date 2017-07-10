@@ -25,6 +25,24 @@ fi
 
 #mkdir -p $MVN_REPO
 #sudo chown -R $USER $MVN_REPO
+echo "ls -la"
+ls -la
+echo "id"
+id
+docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+	   --user=$(id -u) \
+       codenvy/che-dev                          \
+       id
+docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
+       -v "$MVN_REPO:/home/user/.m2/repository" \
+       -v "$PWD":/home/user/che-build           \
+       -w /home/user/che-build                  \
+	   --user=$(id -u) \
+       codenvy/che-dev                          \
+       ls -la /home/user/
 docker run -it --rm -v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro \
        -v "$MVN_REPO:/home/user/.m2/repository" \
        -v "$PWD":/home/user/che-build           \
