@@ -8,4 +8,4 @@ cache:
   directories:
   - $HOME/.m2
 script:
-    ./build.sh 2>&1 | grep -v "Download"
+    ./build.sh 2>&1 | grep -v "Download" && exit ${PIPESTATUS[0]}
